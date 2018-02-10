@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+
+# RVM
+export PATH="$PATH:$HOME/.rvm/bin"
+
+# Linux Brew exports.
+export PATH="/home/linuxbrew/.linuxbrew/bin:$PATH"
+export MANPATH="/home/linuxbrew/.linuxbrew/share/man:$MANPATH"
+export INFOPATH="/home/linuxbrew/.linuxbrew/share/info:$INFOPATH"

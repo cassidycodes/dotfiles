@@ -29,15 +29,7 @@ export LESS_TERMCAP_md="${yellow}";
 # Don't clear the screen after quitting a manual page.
 export MANPAGER='less -X';
 
-# RVM
-export PATH="$PATH:$HOME/.rvm/bin"
-
 # NVM
 export NVM_DIR="$HOME/.nvm"
 # Linuxbrew told me to add this line, but it slows tmux down
 # . "/home/linuxbrew/.linuxbrew/opt/nvm/nvm.sh"
-
-# Linux Brew exports.
-export PATH="/home/linuxbrew/.linuxbrew/bin:$PATH"
-export MANPATH="/home/linuxbrew/.linuxbrew/share/man:$MANPATH"
-export INFOPATH="/home/linuxbrew/.linuxbrew/share/info:$INFOPATH"
