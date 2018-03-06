@@ -46,3 +46,12 @@ complete -W "NSGlobalDomain" defaults;
 
 # Add `killall` tab completion for common apps
 complete -o "nospace" -W "Contacts Calendar Dock Finder Mail Safari iTunes SystemUIServer Terminal Twitter" killall;
+
+# Took this from Luis' bashrc tyring to solve a problem where auth keys get dropped by tmux
+SOCK="/tmp/ssh-agent-$USER-screen"
+if test $SSH_AUTH_SOCK && [ $SSH_AUTH_SOCK != $SOCK ]
+then
+    rm -f /tmp/ssh-agent-$USER-screen
+    ln -sf $SSH_AUTH_SOCK $SOCK
+    export SSH_AUTH_SOCK=$SOCK
+fi
