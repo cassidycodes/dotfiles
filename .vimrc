@@ -48,7 +48,7 @@ set autoindent " Auto indention should be on
 
 filetype plugin indent on
 
-" Ruby stuff: Thanks Ben :)
+" Ruby stuff
 " ================
 syntax on                 " Enable syntax highlighting
 filetype plugin indent on " Enable filetype-specific indenting and plugins
@@ -61,12 +61,12 @@ augroup myfiletypes
 augroup END
 " ================
 
+" SILENCE!
+set visualbell
+
 " Syntax highlighting and theme
 
 syntax enable
-
-" SILENCE!
-set visualbell
 
 " Configs to make Solarized look great
 set background=dark
@@ -90,6 +90,7 @@ set hlsearch
 set incsearch
 set ignorecase
 set smartcase
+
 " Remove highlights with leader + enter
 nmap <Leader><CR> :nohlsearch<cr>
 
@@ -98,15 +99,17 @@ map <leader>p :bp<CR> " \p previous buffer
 map <leader>n :bn<CR> " \n next buffer
 map <leader>d :bd<CR> " \d delete buffer
 
+" Run Tests via vim-test
 map <Leader>c :call <CR>
 nmap <silent> <leader>c :TestFile<CR>
 nmap <silent> <leader>s :TestNearest<CR>
 map <leader>t :A<CR> " \t to jump to test file
 map <leader>r :r<cr> " \t to jump to related file
 
+" Always display status bar
 set laststatus=2
 
-" Don't be a noob, join the no arrows key movement
+" No arrow keys 
 inoremap  <Up>     <NOP>
 inoremap  <Down>   <NOP>
 inoremap  <Left>   <NOP>
@@ -129,6 +132,7 @@ set cuc cul"
 " Tab completion
 set wildmode=list:longest,list:full
 set wildignore+=*.o,*.obj,.git,*.rbc,*.class,.svn,vendor/gems/*
+
 """"""""""""""""""""""""""""""""""""""""
 " BACKUP / TMP FILES
 """"""""""""""""""""""""""""""""""""""""
