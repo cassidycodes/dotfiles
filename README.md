@@ -24,3 +24,7 @@ git config --global user.signingkey "$GIT_CONFIG_USER_SIGNINGKEY"
 git config --global user.name "$GIT_AUTHOR_NAME"
 git config --global user.email "$GIT_AUTHOR_EMAIL"
 ```
+
+## tmux.conf
+
+https://github.com/tony/tmux-config
