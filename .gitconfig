@@ -21,6 +21,9 @@
 	# Commit all changes
 	ca = !git add -A && git commit -av
 
+        # View local branches
+        b = branch
+
 	# Switch to a branch, creating it if necessary
 	go = "!f() { git checkout -b \"$1\" 2> /dev/null || git checkout \"$1\"; }; f"
 
@@ -135,7 +138,7 @@
 [commit]
 
 	# https://help.github.com/articles/signing-commits-using-gpg/
-	gpgsign = true
+	gpgsign = false
 
 [diff]
 
@@ -186,6 +189,6 @@
 
 	insteadOf = "gist:"
 [user]
-	signingkey = 256CDBF985F0BFBE
-	name = Cassidy Kobewka
+	signingkey = yourkeyid
+	name = Cassidy K
 	email = hello@cassidy.codes

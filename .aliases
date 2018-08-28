@@ -82,3 +82,8 @@ alias path='echo -e ${PATH//:/\\n}'
 
 # Remove swp files
 alias rmswp='find . -name "*.swp" -exec rm {} \;'
+
+# Reset HS test db
+alias prep_hs_test_db='bundle exec rake db:migrate db:test:prepare; bundle exec rake db:seed RAILS_ENV=test'
+
+alias sshconfig='vim ~/.ssh/config && source ~/.bashrc && echo "${green}Config Updated${reset}"'

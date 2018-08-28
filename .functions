@@ -192,3 +192,7 @@ function git_current_branch() {
 function mina_deploy_current_branch () {
   bundle exec mina $1 deploy branch="$(git_current_branch)"
 }
+
+function cap_deploy_current_branch () {
+  bundle exec cap $1 deploy BRANCH="$(git_current_branch)"
+}

@@ -1,4 +1,13 @@
 #!/usr/bin/env bash
 
+# For elasticbeanstalk
+export PATH="$HOME/.local/bin/:$PATH"
+
+# Add `~/bin` to the `$PATH`
+export PATH="$HOME/bin:$PATH";
+
 # RVM
 export PATH="$PATH:$HOME/.rvm/bin"
+
+# Cargo
+export PATH="$PATH:$HOME/.cargo/bin"

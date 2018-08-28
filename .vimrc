@@ -313,6 +313,10 @@ function! s:Median(nums)
     endif
 endfunction
 
+"pry shortcuts
+nmap <leader>bp :call pry#insert()<cr>
+
+
 "nerdtree settings
 let g:NERDTreeDirArrows=0
 let g:NERDTreeMouseMode = 2
