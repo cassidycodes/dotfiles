@@ -92,9 +92,11 @@ alias prep_hs_test_db='bundle exec rake db:migrate db:test:prepare; bundle exec 
 alias sshconfig='vim ~/.ssh/config && source ~/.bashrc && echo "${green}Config Updated${reset}"'
 
 # Convert a mov to a gif
-
 giffthis() {
   ffmpeg -v warning -i $1 -vf "fps=15,palettegen=stats_mode=diff" -y /tmp/palette.png
   ffmpeg -i $1 -lavfi "fps=15,paletteuse=dither=bayer:bayer_scale=5:diff_mode=rectangle" -y $2
   gifsicle --batch --optimize=3 $2
 }
+=======
+# See what's running on a given port
+alias openports='sudo lsof -i -n -P | grep TCP | grep'
