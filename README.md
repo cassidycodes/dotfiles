@@ -42,5 +42,6 @@ defaults write -g KeyRepeat -int 1 # normal minimum is 2 (30 ms)
 -[ ] Install ruby
 -[ ] Install ffmpeg and gifsicle
 -[ ] Pull Vim packages
--[ ] Install ag and jq, ctags, tmux-mem-cpu-load 
+-[ ] Install ag and jq, ctags, tmux-mem-cpu-load, git bash-autocompletion
 -[ ] Install fira code, iterm, firefox 
+
