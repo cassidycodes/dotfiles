@@ -42,3 +42,4 @@ defaults write -g KeyRepeat -int 1 # normal minimum is 2 (30 ms)
 -[ ] Install ruby
 -[ ] Install ffmpeg and gifsicle
 -[ ] Pull Vim packages
+-[ ] Install ag and jq

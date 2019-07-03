@@ -50,3 +50,6 @@ then
     ln -sf $SSH_AUTH_SOCK $SOCK
     export SSH_AUTH_SOCK=$SOCK
 fi
+
+# Init rbenv
+eval "$(rbenv init -)"
