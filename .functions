@@ -196,3 +196,11 @@ function mina_deploy_current_branch () {
 function cap_deploy_current_branch () {
   bundle exec cap $1 deploy BRANCH="$(git_current_branch)"
 }
+
+# Convert a mov to a gif
+giffthis() {
+  ffmpeg -v warning -i $1 -vf "fps=15,palettegen=stats_mode=diff" -y /tmp/palette.png
+  ffmpeg -i $1 -lavfi "fps=15,paletteuse=dither=bayer:bayer_scale=5:diff_mode=rectangle" -y $2
+  gifsicle --batch --optimize=3 $2
+}
+
