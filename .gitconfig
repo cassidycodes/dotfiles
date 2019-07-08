@@ -189,6 +189,6 @@
 
 	insteadOf = "gist:"
 [user]
-	signingkey = yourkeyid
-	name = Cassidy K
+	signingkey = 256CDBF985F0BFBE
+	name = Cassidy Kobewka
 	email = hello@cassidy.codes
