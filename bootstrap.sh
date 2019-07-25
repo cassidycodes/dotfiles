@@ -11,6 +11,8 @@ function doIt() {
   ln -sfi dotfiles/.gitignore ~/.gitignore
   ln -sfi dotfiles/.path ~/.path
   ln -sfi dotfiles/.tmux.conf ~/.tmux.conf
+  mkdir -p ~/.tmux/plugins
+  cp -r tpm ~/.tmux/plugins/tpm
   source ~/.bash_profile;
 }
 
