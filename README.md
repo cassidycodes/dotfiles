@@ -37,11 +37,12 @@ defaults write -g InitialKeyRepeat -int 10 # normal minimum is 15 (225 ms)
 defaults write -g KeyRepeat -int 1 # normal minimum is 2 (30 ms)
 ```
 
--[ ] Install brew
--[ ] Install rbenv
--[ ] Install ruby
--[ ] Install ffmpeg and gifsicle
--[ ] Pull Vim packages
--[ ] Install ag and jq, ctags, tmux-mem-cpu-load, git bash-autocompletion
--[ ] Install fira code, iterm, firefox 
+- [ ] Install brew
+- [ ] Install rbenv
+- [ ] Install ruby
+- [ ] Install ffmpeg and gifsicle
+- [ ] Pull git-bash-completion
+- [ ] Pull Vim packages
+- [ ] Install ag and jq, ctags, tmux-mem-cpu-load, git bash-autocompletion
+- [ ] Install fira code, iterm, firefox 
 

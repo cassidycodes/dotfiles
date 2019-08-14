@@ -7,6 +7,7 @@ function doIt() {
   ln -sfi dotfiles/.bash_profile ~/.bash_profile
   ln -sfi dotfiles/.bashrc ~/.bashrc
   ln -sfi dotfiles/.functions ~/.functions
+  ln -sfi dotfiles/git-completion.bash ~/git-completion.bash
   ln -sfi dotfiles/.gitconfig ~/.gitconfig
   ln -sfi dotfiles/.gitignore ~/.gitignore
   ln -sfi dotfiles/.path ~/.path
