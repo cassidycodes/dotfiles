@@ -33,7 +33,7 @@ autocmd FileType Markdown setlocal nofoldenable
 noremap <Leader>r :noautocmd %s/<C-r><C-w>/<C-r><C-w>/gc
 
 " Remove trailing white spaces
- nnoremap <Leader>w :%s/\s\+$// <CR>
+nnoremap <Leader>w :%s/\s\+$// <CR>
 
  "display tabs and trailing spaces
 :highlight ExtraWhitespace ctermbg=red guibg=red
@@ -93,3 +93,11 @@ function! LightlineFilename()
   endif
   return expand('%')
 endfunction
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Vim Dispatch
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+nnoremap <Leader>rt :execute "Dispatch bundle exec rspec %:" . line(".")<CR>
+nnoremap <Leader>rtt :execute "Dispatch bundle exec rspec %"<CR>
+nnoremap <Leader>rl :execute "Dispatch bundle exec rubocop -a %"<CR>

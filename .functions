@@ -211,5 +211,9 @@ giffthis() {
       # if not found in /usr/local/etc, try the brew --prefix location
     [ -f "$(brew --prefix)/etc/bash_completion.d/git-completion.bash"  ] && \
               . $(brew --prefix)/etc/bash_completion.d/git-completion.bash
-    
+}
+
+# set GOPATH to current directory
+function setgopath() {
+  export GOPATH=`pwd` && echo "GOPATH is set to $GOPATH"
 }

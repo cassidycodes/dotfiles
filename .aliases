@@ -86,9 +86,7 @@ alias path='echo -e ${PATH//:/\\n}'
 # Remove swp files
 alias rmswp='find . -name "*.swp" -exec rm {} \;'
 
-# Reset HS test db
-alias prep_hs_test_db='bundle exec rake db:migrate db:test:prepare; bundle exec rake db:seed RAILS_ENV=test'
-
+# Edit and save ssh/config 
 alias sshconfig='vim ~/.ssh/config && source ~/.bashrc && echo "${green}Config Updated${reset}"'
 
 # See what's running on a given port
@@ -105,3 +103,13 @@ alias dockercleani='printf "\n>>> Deleting untagged images\n\n" && docker rmi $(
 
 # Delete all stopped containers and untagged images.
 alias dockerclean='dockercleanc || true && dockercleani'
+
+# bundle install
+alias bi='bundle install'
+
+# bundle exec
+alias be='bundle exec'
+
+# hub stuff
+alias hbr='hub browse'
+
