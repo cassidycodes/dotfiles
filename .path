@@ -11,3 +11,12 @@ export PATH="$PATH:$HOME/.rvm/bin"
 
 # Cargo
 export PATH="$PATH:$HOME/.cargo/bin"
+
+# Using openssl from brew
+export PATH=$(brew --prefix openssl)/bin:$PATH
+
+# Add brew's sbin to path
+export PATH=/usr/local/sbin:$PATH
+
+# Adding go bin to the path
+export PATH=$PATH:/Users/cassidy/go/bin

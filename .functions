@@ -197,6 +197,11 @@ function cap_deploy_current_branch () {
   bundle exec cap $1 deploy BRANCH="$(git_current_branch)"
 }
 
+# Create a new hugo blog post
+function newhugopost () {
+  hugo new content/blog/$(date '+%Y-%m-%d')-$1.md
+}
+
 # Convert a mov to a gif
 # giffthis input.mov output.gif
 giffthis() {
@@ -213,7 +218,3 @@ giffthis() {
               . $(brew --prefix)/etc/bash_completion.d/git-completion.bash
 }
 
-# set GOPATH to current directory
-function setgopath() {
-  export GOPATH=`pwd` && echo "GOPATH is set to $GOPATH"
-}

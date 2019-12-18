@@ -14,23 +14,25 @@ set shiftwidth=2
 set tabstop=2
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Ruler, Cursor, Numbers
+" => Ruler, Cursor, Numbers, Folds
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 set cursorcolumn
 set colorcolumn=120
 set number
+noremap pbc :w !pbcopy<CR><CR>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Spelling & Markdown
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 setlocal nospell spelllang=en_ca
-autocmd FileType Markdown setlocal spell
-autocmd FileType Markdown setlocal nofoldenable
+" FIXME
+autocmd FileType Markdown setlocal spell nofoldenable
+autocmd FileType gitcommit setlocal spell spelllang=en_ca
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Search & Replace
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-noremap <Leader>r :noautocmd %s/<C-r><C-w>/<C-r><C-w>/gc
+" noremap <Leader>r :noautocmd %s/<C-r><C-w>/<C-r><C-w>/gc
 
 " Remove trailing white spaces
 nnoremap <Leader>w :%s/\s\+$// <CR>
@@ -44,20 +46,30 @@ set nolist
 :autocmd cursorhold,bufwritepost * unlet! b:statusline_trailing_space_warning
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => ctrlp & MRU
+" => ctrlp & MRU & Autocomplete
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 set wildignore+=*/tmp/*,*.so,*.swp,*.zip
-let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn)$'
+let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn|log)$'
 set tags=./tags,tags;$HOME
-let g:autotagTagsFile=".tags"
+let g:easytags_dynamic_files = 1
+"let g:autotagTagsFile=".tags"
 
 " set max length for the mru file list
 let g:mru_file_list_size = 7 " default value"
-"value  set path pattens that should be ignored
-let g:mru_ignore_patterns = 'fugitive\|\.git/\|\_^/tmp/|^/log/' " default value"
+
+" value  set path pattens that should be ignored
+let g:mru_ignore_patterns = 'fugitive\|\.git/\|\_^/tmp/|^/log/|tags' " default value"
 autocmd FileType MRU setlocal nospell
 
+" Default sort bufexplorer by mru
 let g:bufExplorerSortBy='mru'
+
+" Add spaces after comment delimiters by default
+let g:NERDSpaceDelims = 1
+" Align line-wise comment delimiters flush left instead of following code indentation
+" let g:NERDDefaultAlign = 'left'
+" Enable trimming of trailing whitespace when uncommenting
+" let g:NERDTrimTrailingWhitespace = 1
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => lightline
@@ -97,7 +109,6 @@ endfunction
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Vim Dispatch
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-nnoremap <Leader>rt :execute "Dispatch bundle exec rspec %:" . line(".")<CR>
-nnoremap <Leader>rtt :execute "Dispatch bundle exec rspec %"<CR>
+nnoremap <Leader>rt :execute "Dispatch bundle exec spring rspec %:" . line(".")<CR>
+nnoremap <Leader>rtt :execute "Dispatch bundle exec spring rspec %"<CR>
 nnoremap <Leader>rl :execute "Dispatch bundle exec rubocop -a %"<CR>
