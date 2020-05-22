@@ -116,3 +116,9 @@ alias hbr='hub browse'
 # Set GOPATH to current directory.
 alias setgopath="export GOPATH=`pwd` && echo \"GOPATH is set to $GOPATH\""
 alias sgp="setgopath"
+
+# Use exa for ls https://the.exa.website/
+alias ls='exa'
+
+# Get the HiMama App Version
+alias appversion='curl -sSL -D - https://www.himama.com/login -o /dev/null | grep Version'

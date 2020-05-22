@@ -48,11 +48,10 @@ set nolist
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => ctrlp & MRU & Autocomplete
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-set wildignore+=*/tmp/*,*.so,*.swp,*.zip
+set wildignore+=*/tmp/*,*.so,*.swp,*.zip,tags
 let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn|log)$'
 set tags=./tags,tags;$HOME
 let g:easytags_dynamic_files = 1
-"let g:autotagTagsFile=".tags"
 
 " set max length for the mru file list
 let g:mru_file_list_size = 7 " default value"
@@ -66,10 +65,6 @@ let g:bufExplorerSortBy='mru'
 
 " Add spaces after comment delimiters by default
 let g:NERDSpaceDelims = 1
-" Align line-wise comment delimiters flush left instead of following code indentation
-" let g:NERDDefaultAlign = 'left'
-" Enable trimming of trailing whitespace when uncommenting
-" let g:NERDTrimTrailingWhitespace = 1
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => lightline
@@ -112,3 +107,8 @@ endfunction
 nnoremap <Leader>rt :execute "Dispatch bundle exec spring rspec %:" . line(".")<CR>
 nnoremap <Leader>rtt :execute "Dispatch bundle exec spring rspec %"<CR>
 nnoremap <Leader>rl :execute "Dispatch bundle exec rubocop -a %"<CR>
+
+let g:ale_linters = {
+\  'javascript': ['eslint'],
+\  'ruby': ['rubocop'],
+}

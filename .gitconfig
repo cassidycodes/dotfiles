@@ -156,6 +156,9 @@
 	# Automatically correct and execute mistyped commands
 	autocorrect = 1
 
+[http]
+  postBuffer = 524288000
+
 [merge]
 
 	# Include summaries of merged commits in newly created merge commit messages
