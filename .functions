@@ -188,15 +188,6 @@ function git_current_branch() {
   echo ${ref#refs/heads/}
 }
 
-# Deploy current branch with mina
-function mina_deploy_current_branch () {
-  bundle exec mina $1 deploy branch="$(git_current_branch)"
-}
-
-function cap_deploy_current_branch () {
-  bundle exec cap $1 deploy BRANCH="$(git_current_branch)"
-}
-
 # Create a new hugo blog post
 function newhugopost () {
   hugo new content/blog/$(date '+%Y-%m-%d')-$1.md
@@ -210,11 +201,3 @@ giffthis() {
   ffmpeg -i $1 -i "/tmp/palette.png" -lavfi "fps=15,paletteuse=dither=bayer:bayer_scale=5:diff_mode=rectangle" -y $2
   gifsicle --batch --optimize=3 $2
 }
-
-# Git Auto Completion
-[ -f /usr/local/etc/bash_completion  ] && . /usr/local/etc/bash_completion || {
-      # if not found in /usr/local/etc, try the brew --prefix location
-    [ -f "$(brew --prefix)/etc/bash_completion.d/git-completion.bash"  ] && \
-              . $(brew --prefix)/etc/bash_completion.d/git-completion.bash
-}
-

@@ -4,17 +4,15 @@ cd "$(dirname "${BASH_SOURCE}")";
 
 function doIt() {
   ln -sfi dotfiles/.aliases ~/.aliases
-  ln -sfi dotfiles/.bash_profile ~/.bash_profile
-  ln -sfi dotfiles/.bashrc ~/.bashrc
+  ln -sfi dotfiles/.zshrc ~/.zshrc
   ln -sfi dotfiles/.functions ~/.functions
-  ln -sfi dotfiles/git-completion.bash ~/git-completion.bash
   ln -sfi dotfiles/.gitconfig ~/.gitconfig
   ln -sfi dotfiles/.gitignore ~/.gitignore
   ln -sfi dotfiles/.path ~/.path
   ln -sfi dotfiles/.tmux.conf ~/.tmux.conf
   mkdir -p ~/.tmux/plugins
   cp -r tpm ~/.tmux/plugins/tpm
-  source ~/.bash_profile;
+  source ~/.zshrc;
 }
 
 if [ "$1" == "--force" -o "$1" == "-f" ]; then
