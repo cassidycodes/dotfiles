@@ -85,3 +85,6 @@ alias appversion='curl -sSL -D - https://www.himama.com/login -o /dev/null | gre
 
 # Update zshrc
 alias zshconfig="vim ~/.zshrc && source ~/.zshrc"
+
+# Override oh my zsh aliases
+alias rdm="rails db:migrate"
