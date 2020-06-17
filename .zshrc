@@ -106,8 +106,8 @@ source $ZSH/oh-my-zsh.sh
 # For a full list of active aliases, run `alias`.
 #
 # Example aliases
-# alias zshconfig="vim ~/.zshrc && source ~/.zshrc"
-# alias ohmyzsh="vim ~/.oh-my-zsh"
+ alias zshconfig="vim ~/.zshrc && source ~/.zshrc"
+ alias ohmyzsh="vim ~/.oh-my-zsh"
 
 # Load the shell dotfiles, and then some:
 # * ~/.path can be used to extend `$PATH`.
