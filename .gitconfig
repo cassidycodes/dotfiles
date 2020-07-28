@@ -193,7 +193,12 @@
 [url "git://gist.github.com/"]
 
 	insteadOf = "gist:"
+
 [user]
+
 	signingkey = 256CDBF985F0BFBE
 	name = Cassidy K
 	email = hello@cassidy.codes
+
+[init]
+	defaultBranch = main
