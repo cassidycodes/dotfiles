@@ -88,3 +88,5 @@ alias zshconfig="vim ~/.zshrc && source ~/.zshrc"
 
 # Override oh my zsh aliases
 alias rdm="rails db:migrate"
+alias rs="bundle exec spring rails server"
+alias rc="bundle exec spring rails console"
