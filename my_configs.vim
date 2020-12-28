@@ -57,7 +57,8 @@ let g:easytags_dynamic_files = 1
 let g:mru_file_list_size = 7 " default value"
 
 " value  set path pattens that should be ignored
-let g:mru_ignore_patterns = 'fugitive\|\.git/\|\_^/tmp/|^/log/|tags' " default value"
+let g:mru_ignore_patterns = 'fugitive\|\.git/\|\_^/tmp/|^/log/|tags|' " default value"
+let g:ctrlp_custom_ignore = 'node_modules\|DS_Store\|git'
 autocmd FileType MRU setlocal nospell
 
 " Default sort bufexplorer by mru

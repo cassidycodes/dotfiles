@@ -52,7 +52,7 @@ alias reload="exec ${SHELL} -l"
 alias path='echo -e ${PATH//:/\\n}'
 
 # Edit and save ssh/config
-alias sshconfig='vim ~/.ssh/config && source ~/.bashrc && echo "${green}Config Updated${reset}"'
+alias sshconfig='vim ~/.ssh/config && source ~/.zshrc && echo "${green}Config Updated${reset}"'
 
 # See what's running on a given port
 alias openports='sudo lsof -i -n -P | grep TCP | grep'
