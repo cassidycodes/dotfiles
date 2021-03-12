@@ -78,7 +78,7 @@ plugins=(
   rake
   rbenv
   ruby
-  vscode
+  yarn
 )
 
 source $ZSH/oh-my-zsh.sh

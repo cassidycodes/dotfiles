@@ -13,6 +13,14 @@ colorscheme dracula
 set shiftwidth=2
 set tabstop=2
 
+" Possible fix for auto-indenting pasted text in tmux
+if &term =~ "screen"
+  let &t_BE = "\e[?2004h"
+  let &t_BD = "\e[?2004l"
+  exec "set t_PS=\e[200~"
+  exec "set t_PE=\e[201~"
+endif
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Ruler, Cursor, Numbers, Folds
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -35,7 +43,7 @@ autocmd FileType gitcommit setlocal spell spelllang=en_ca
 " noremap <Leader>r :noautocmd %s/<C-r><C-w>/<C-r><C-w>/gc
 
 " Remove trailing white spaces
-nnoremap <Leader>w :%s/\s\+$// <CR>
+nnoremap <Leader>ws :%s/\s\+$// <CR>
 
  "display tabs and trailing spaces
 :highlight ExtraWhitespace ctermbg=red guibg=red
@@ -109,7 +117,19 @@ nnoremap <Leader>rt :execute "Dispatch bundle exec spring rspec %:" . line(".")<
 nnoremap <Leader>rtt :execute "Dispatch bundle exec spring rspec %"<CR>
 nnoremap <Leader>rl :execute "Dispatch bundle exec rubocop -a %"<CR>
 
+" Only run linters named in ale_linters settings.
+" let g:ale_linters_explicit = 1
+
 let g:ale_linters = {
 \  'javascript': ['eslint'],
+\  'ruby': ['rubocop']
+\}
+
+let g:ale_fixers= {
+\  'javascript': ['eslint'],
 \  'ruby': ['rubocop'],
-}
+\  '*': ['remove_trailing_lines', 'trim_whitespace']
+\}
+
+" Set this variable to 1 to fix files when you save them.
+let g:ale_fix_on_save = 1

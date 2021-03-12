@@ -17,3 +17,9 @@ export PATH=$PATH:/Users/cassidy/go/bin
 
 # Stick to terraform 0.12
 export PATH="/usr/local/opt/terraform@0.12/bin:$PATH"
+
+# Stick to postgres 11
+export PATH="/usr/local/opt/postgresql@12/bin:$PATH"
+
+# Add nodenv to path
+eval "$(nodenv init -)"

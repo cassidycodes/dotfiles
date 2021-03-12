@@ -201,3 +201,61 @@ giffthis() {
   ffmpeg -i $1 -i "/tmp/palette.png" -lavfi "fps=15,paletteuse=dither=bayer:bayer_scale=5:diff_mode=rectangle" -y $2
   gifsicle --batch --optimize=3 $2
 }
+
+# Based on fast routes for Ruby on Rails applications by tlehman
+function fast_rails_routes() {
+  if [ ! -f config/routes.rb ]; then
+    echo "Not in root of Rails app"
+    exit 1
+  fi
+
+  cached_routes_filename="tmp/cached_routes_$(md5 -q config/routes.rb).txt"
+
+  function cache_routes {
+    echo "Generating new cache..."
+    bundle exec spring rails routes > $cached_routes_filename
+  }
+
+  function clear_cache {
+    for old_file in $(ls tmp/cache_routes*.txt); do
+      rm $old_file
+    done
+  }
+
+  function show_cache {
+    cat $cached_routes_filename
+  }
+
+  function show_current_filename {
+    echo $cached_routes_filename
+  }
+
+  function main {
+    if [ ! -f $cached_routes_filename ]; then
+      cache_routes
+    fi
+
+    show_cache
+  }
+
+  if [[ "$1" == "-f" ]]
+  then
+    show_current_filename
+  elif [[ "$1" == "-r" ]]
+  then
+    rm $cached_routes_filename
+    cache_routes
+  elif [[ "$1" == "-h" ]]
+  then
+    echo "Print all routes"
+    echo "$ fast_rails_routes"
+    echo
+    echo "Clear the cache and print all routes"
+    echo "$ fast_rails_routes -r"
+    echo
+    echo "Print out the cache file name"
+    echo "$ fast_rails_routes -f"
+  else
+    main
+  fi
+}
