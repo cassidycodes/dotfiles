@@ -2,7 +2,7 @@
 
 cd "$(dirname "${BASH_SOURCE}")";
 
-function doIt() {
+function bootstrap() {
   ln -sfi dotfiles/.aliases ~/.aliases
   ln -sfi dotfiles/.zshrc ~/.zshrc
   ln -sfi dotfiles/.functions ~/.functions
@@ -12,16 +12,20 @@ function doIt() {
   ln -sfi dotfiles/.tmux.conf ~/.tmux.conf
   mkdir -p ~/.tmux/plugins
   cp -r tpm ~/.tmux/plugins/tpm
+  mkdir -p ~/.zsh
+  cd ~/.zsh
+  git clone git@github.com:reobin/typewritten.git
+  cd
   source ~/.zshrc;
 }
 
 if [ "$1" == "--force" -o "$1" == "-f" ]; then
-  doIt;
+  bootstrap;
 else
   read -p "This may overwrite existing files in your home directory. Are you sure? (y/n) " -n 1;
   echo "";
   if [[ $REPLY =~ ^[Yy]$ ]]; then
-    doIt;
+    bootstrap;
   fi;
 fi;
-unset doIt;
+unset bootstrap;

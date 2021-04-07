@@ -100,4 +100,5 @@ alias gfpnv="git push --force-with-lease --no-verify"
 # hm-proj
 alias hmp="tmuxinator start hm-proj"
 
-
+# find gems with C extensions
+alias cgem="bundle show --paths | ruby -e \"STDIN.each_line {|dep| puts dep.split('/').last if File.directory?(File.join(dep.chomp, 'ext')) }\""
