@@ -16,6 +16,8 @@ function bootstrap() {
   cd ~/.zsh
   git clone git@github.com:reobin/typewritten.git
   cd
+  defaults write -g InitialKeyRepeat -int 10 # normal minimum is 15 (225 ms)
+  defaults write -g KeyRepeat -int 1 # normal minimum is 2 (30 ms)
   source ~/.zshrc;
 }
 
