@@ -10,14 +10,43 @@ function bootstrap() {
   ln -sfi dotfiles/.gitignore ~/.gitignore
   ln -sfi dotfiles/.path ~/.path
   ln -sfi dotfiles/.tmux.conf ~/.tmux.conf
+  ln -sfi dotfiles/.my_configs.vim ~/.vim_runtime/my_configs.vim
+
+  # Homebrew
+  /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+
+  # Oh My Zsh
+  sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+
+  brew install exa
+  brew install bat
+  brew install ag
+  brew install rg
+  brew install tmux
+  brew install vim
+  brew install rbenv
+  brew install tmux-mem-cpu-load
+  brew install --cask rectangle
+
+  # Vim
+  git clone git@github.com:amix/vimrc.git ~/.vim_runtime
+  sh ~/.vim_runtime/install_awesome_vimrc.sh
+  mkdir -p ~/.vim/pack/themes/start
+  git clone git@github.com:dracula/vim.git ~-/vim/pack/themes/start/dracula
+
+  # tmux
   mkdir -p ~/.tmux/plugins
   cp -r tpm ~/.tmux/plugins/tpm
   mkdir -p ~/.zsh
   cd ~/.zsh
   git clone git@github.com:reobin/typewritten.git
   cd
-  defaults write -g InitialKeyRepeat -int 10 # normal minimum is 15 (225 ms)
-  defaults write -g KeyRepeat -int 1 # normal minimum is 2 (30 ms)
+
+  # MacOS configs
+  # Must log out and back in for this to take effect
+  defaults write -g KeyRepeat -int 1
+  defaults write -g  InitialKeyRepeat -int 10
+
   source ~/.zshrc;
 }
 

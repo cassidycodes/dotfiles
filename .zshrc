@@ -77,7 +77,6 @@ prompt typewritten
 plugins=(
   bundler
   git
-  heroku
   httpie
   osx
   rails

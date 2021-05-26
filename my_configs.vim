@@ -1,6 +1,7 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Colors and Fonts
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+packadd! dracula
 syntax enable set background=dark
 let g:dracula_colorterm = 0
 let g:dracula_italic = 0
@@ -133,3 +134,9 @@ let g:ale_fixers= {
 
 " Set this variable to 1 to fix files when you save them.
 let g:ale_fix_on_save = 1
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" =>  SnipMate
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+let g:snipMate = { 'snippet_version' : 1 }
