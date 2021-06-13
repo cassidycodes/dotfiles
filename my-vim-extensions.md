@@ -1,0 +1,21 @@
+Permissions Size User    Date Modified Name
+.rw-r--r--     0 cassidy  2 Jul  2019  .gitkeep
+drwxr-xr-x     - cassidy 20 Jul  2019  applescript.vim
+drwxr-xr-x     - cassidy  2 Jul  2019  dispatch
+drwxr-xr-x     - cassidy  2 Jul  2019  dracula-theme
+drwxr-xr-x     - cassidy  2 Jul  2019  numbers.vim
+drwxr-xr-x     - cassidy  8 Oct  2019  nvim-yarp
+drwxr-xr-x     - cassidy 16 Jul  2019  rspec.vim
+drwxr-xr-x     - cassidy  7 Jan  2020  supertab
+drwxr-xr-x     - cassidy  2 Jul  2019  vim-bundler
+drwxr-xr-x     - cassidy  2 Jul  2019  vim-dracula
+drwxr-xr-x     - cassidy 24 Sep  2019  vim-hugo-helper
+drwxr-xr-x     - cassidy 17 Jul  2019  vim-javascript
+drwxr-xr-x     - cassidy  7 Nov  2019  vim-misc
+drwxr-xr-x     - cassidy  2 Jul  2019  vim-rails
+drwxr-xr-x     - cassidy  7 Nov  2019  vim-rdoc
+drwxr-xr-x     - cassidy 25 Nov  2019  vim-rhubarb
+drwxr-xr-x     - cassidy  3 Jul  2019  vim-slim
+drwxr-xr-x     - cassidy 16 Sep  2019  vim-terraform
+drwxr-xr-x     - cassidy 16 Sep  2019  vim-terraform-completion
+drwxr-xr-x     - cassidy 24 Sep  2019  vim-toml
