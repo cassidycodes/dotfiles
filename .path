@@ -22,7 +22,7 @@ export PATH="/usr/local/opt/terraform@0.12/bin:$PATH"
 export PATH="/usr/local/opt/postgresql@12/bin:$PATH"
 
 # Add nodenv to path
-# eval "$(nodenv init -)"
+eval "$(nodenv init -)"
 
 # Add rbenv to path
 eval "$(rbenv init -)"

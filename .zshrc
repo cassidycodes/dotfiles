@@ -77,8 +77,6 @@ prompt typewritten
 plugins=(
   bundler
   git
-  httpie
-  osx
   rails
   rake
   rbenv
@@ -111,8 +109,8 @@ source $ZSH/oh-my-zsh.sh
 # For a full list of active aliases, run `alias`.
 #
 # Example aliases
- alias zshconfig="vim ~/.zshrc && source ~/.zshrc"
- alias ohmyzsh="vim ~/.oh-my-zsh"
+alias zshconfig="vim ~/.zshrc && source ~/.zshrc"
+alias ohmyzsh="vim ~/.oh-my-zsh"
 
 # Load the shell dotfiles, and then some:
 # * ~/.path can be used to extend `$PATH`.
@@ -121,3 +119,6 @@ for file in ~/.{path,exports,aliases,functions,extra}; do
 	[ -r "$file" ] && [ -f "$file" ] && source "$file";
 done;
 unset file;
+
+# Maybe speed up autocomplete
+autoload -Uz compinit && compinit

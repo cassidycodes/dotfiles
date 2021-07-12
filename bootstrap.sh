@@ -10,9 +10,9 @@ function bootstrap() {
   ln -sfi dotfiles/.gitignore ~/.gitignore
   ln -sfi dotfiles/.path ~/.path
   ln -sfi dotfiles/.tmux.conf ~/.tmux.conf
-  ln -sfi dotfiles/.my_configs.vim ~/.vim_runtime/my_configs.vim
 
   # Homebrew
+  # TODO some initialization stuff
   /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 
   # Oh My Zsh
@@ -25,14 +25,20 @@ function bootstrap() {
   brew install tmux
   brew install vim
   brew install rbenv
+  sudo easy_install nodeenv
   brew install tmux-mem-cpu-load
   brew install --cask rectangle
+  brew install tldr
+
+  rbenv init
+  nodeenv init
 
   # Vim
   git clone git@github.com:amix/vimrc.git ~/.vim_runtime
   sh ~/.vim_runtime/install_awesome_vimrc.sh
   mkdir -p ~/.vim/pack/themes/start
   git clone git@github.com:dracula/vim.git ~-/vim/pack/themes/start/dracula
+  ln -sfi dotfiles/my_configs.vim ~/.vim_runtime/my_configs.vim
 
   # tmux
   mkdir -p ~/.tmux/plugins

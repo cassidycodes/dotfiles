@@ -196,9 +196,9 @@
 
 [user]
 
-	signingkey = 256CDBF985F0BFBE
-	name = Cassidy K
-	email = hello@cassidy.codes
+	signingkey =
+	name = Cassidy Scheffer
+	email = cscheffer@tucowsinc.com
 
 [init]
 	defaultBranch = main
