@@ -3,17 +3,17 @@
 cd "$(dirname "${BASH_SOURCE}")";
 
 function bootstrap() {
-  ln -sfi dotfiles/.aliases ~/.aliases
-  ln -sfi dotfiles/.zshrc ~/.zshrc
-  ln -sfi dotfiles/.functions ~/.functions
-  ln -sfi dotfiles/.gitconfig ~/.gitconfig
-  ln -sfi dotfiles/.gitignore ~/.gitignore
-  ln -sfi dotfiles/.path ~/.path
-  ln -sfi dotfiles/.tmux.conf ~/.tmux.conf
+  # ln -sfi dotfiles/.aliases ~/.aliases
+  # ln -sfi dotfiles/.zshrc ~/.zshrc
+  # ln -sfi dotfiles/.functions ~/.functions
+  # ln -sfi dotfiles/.gitconfig ~/.gitconfig
+  # ln -sfi dotfiles/.gitignore ~/.gitignore
+  # ln -sfi dotfiles/.path ~/.path
+  # ln -sfi dotfiles/.tmux.conf ~/.tmux.conf
 
   # Homebrew
   # TODO some initialization stuff
-  /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+  # /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 
   # Oh My Zsh
   sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"

@@ -198,7 +198,9 @@
 
 	signingkey =
 	name = Cassidy Scheffer
-	email = cscheffer@tucowsinc.com
+	email = cscheffer@wealthsimple.com
 
 [init]
 	defaultBranch = main
+[pull]
+	ff = only

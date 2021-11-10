@@ -2,8 +2,6 @@
 " => Colors and Fonts
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-packadd! dracula
-syntax enable set background=dark
 let g:dracula_colorterm = 0
 let g:dracula_italic = 0
 colorscheme dracula
@@ -15,7 +13,7 @@ colorscheme dracula
 set shiftwidth=2
 set tabstop=2
 
-" Possible fix for auto-indenting pasted text in tmux
+" Fix for auto-indenting pasted text in tmux
 if &term =~ "screen"
   let &t_BE = "\e[?2004h"
   let &t_BD = "\e[?2004l"
@@ -27,7 +25,7 @@ endif
 " => Ruler, Cursor, Numbers, Folds
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 set cursorcolumn
-set colorcolumn=120
+set colorcolumn=100
 set number
 noremap pbc :w !pbcopy<CR><CR>
 
@@ -120,16 +118,20 @@ nnoremap <Leader>rtt :execute "Dispatch bundle exec spring rspec %"<CR>
 nnoremap <Leader>rl :execute "Dispatch bundle exec rubocop -a %"<CR>
 
 " Only run linters named in ale_linters settings.
-" let g:ale_linters_explicit = 1
+let g:ale_linters_explicit = 1
 
 let g:ale_linters = {
 \  'javascript': ['eslint'],
-\  'ruby': ['rubocop']
+\  'ruby': ['rubocop'],
+\  'markdown': ['remark-lint'],
+\  'avro': ['jsonlint', 'prettier']
 \}
 
 let g:ale_fixers= {
 \  'javascript': ['eslint'],
 \  'ruby': ['rubocop'],
+\  'markdown': ['remark-lint'],
+\  'avro': ['prettier'],
 \  '*': ['remove_trailing_lines', 'trim_whitespace']
 \}
 

@@ -2,7 +2,7 @@
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
-export ZSH="/Users/cassidy/.oh-my-zsh"
+export ZSH="/Users/cscheffer/.oh-my-zsh"
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
@@ -78,10 +78,10 @@ plugins=(
   bundler
   git
   rails
-  rake
-  rbenv
-  ruby
-  yarn
+  # rake
+  # rbenv
+  # ruby
+  # yarn
 )
 
 source $ZSH/oh-my-zsh.sh
@@ -122,3 +122,7 @@ unset file;
 
 # Maybe speed up autocomplete
 autoload -Uz compinit && compinit
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
