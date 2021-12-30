@@ -75,6 +75,8 @@ let g:bufExplorerSortBy='mru'
 " Add spaces after comment delimiters by default
 let g:NERDSpaceDelims = 1
 
+" Show NERDTree on the lef
+let g:NERDTreeWinPos = "left"
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => lightline
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""

@@ -80,12 +80,6 @@ alias sgp="setgopath"
 alias ls='exa'
 alias la='ls -lah'
 
-# Get the HiMama App Version
-alias appversion='curl -sSL -D - https://www.himama.com/login -o /dev/null | grep Version'
-
-# Update zshrc
-alias zshconfig="vim ~/.zshrc && source ~/.zshrc"
-
 # Override oh my zsh aliases
 alias rdm="rails db:migrate"
 alias rs="bundle exec spring rails server"
@@ -102,3 +96,10 @@ alias hmp="tmuxinator start hm-proj"
 
 # find gems with C extensions
 alias cgem="bundle show --paths | ruby -e \"STDIN.each_line {|dep| puts dep.split('/').last if File.directory?(File.join(dep.chomp, 'ext')) }\""
+
+# neo vim shortcut
+alias nv="nvim"
+
+# Configure zsh
+alias zshconfig="nvim ~/.zshrc && source ~/.zshrc"
+alias ohmyzsh="nvim ~/.oh-my-zsh"

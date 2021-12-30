@@ -1,24 +1,6 @@
 #!/usr/bin/env bash
 
-# For elasticbeanstalk
-export PATH="$HOME/.local/bin/:$PATH"
-
-# Add `~/bin` to the `$PATH`
-export PATH="$HOME/bin:$PATH";
-
-# Using openssl from brew
-export PATH=$(brew --prefix openssl)/bin:$PATH
-
-# Add brew's sbin to path
-export PATH=/usr/local/sbin:$PATH
-
-# Adding go bin to the path
-export PATH=$PATH:/Users/cassidy/go/bin
-
-# Stick to terraform 0.12
-export PATH="/usr/local/opt/terraform@0.12/bin:$PATH"
-
-# Stick to postgres 11
+# Stick to postgres 12
 export PATH="/usr/local/opt/postgresql@12/bin:$PATH"
 
 # Add nodenv to path
