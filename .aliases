@@ -99,6 +99,8 @@ alias cgem="bundle show --paths | ruby -e \"STDIN.each_line {|dep| puts dep.spli
 
 # neo vim shortcut
 alias nv="nvim"
+alias v="nvim"
+alias vim="nvim"
 
 # Configure zsh
 alias zshconfig="nvim ~/.zshrc && source ~/.zshrc"

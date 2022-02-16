@@ -1,4 +1,31 @@
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Plugins
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+call plug#begin()
+
+Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+Plug 'uplus/deoplete-solargraph'
+Plug 'autozimu/LanguageClient-neovim', {
+    \ 'branch': 'next',
+    \ 'do': 'bash install.sh',
+    \ }
+Plug 'leafgarland/typescript-vim'
+
+
+let g:deoplete#enable_at_startup = 1
+
+let g:LanguageClient_serverCommands = {
+    \ 'rust': ['~/.cargo/bin/rustup', 'run', 'stable', 'rls'],
+    \ 'javascript': ['/usr/local/bin/javascript-typescript-stdio'],
+    \ 'javascript.jsx': ['tcp://127.0.0.1:2089'],
+    \ 'python': ['/usr/local/bin/pyls'],
+    \ 'ruby': ['~/.rbenv/shims/solargraph', 'stdio'],
+    \ }
+nnoremap <silent> K :call LanguageClient#textDocument_hover()<CR>
+nnoremap <silent> gd :call LanguageClient#textDocument_definition()<CR>
+nnoremap <silent> <F2> :call LanguageClient#textDocument_rename()<CR>
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Colors and Fonts
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -129,12 +156,15 @@ let g:ale_linters = {
 \  'avro': ['jsonlint', 'prettier']
 \}
 
+let js_fixers = ['eslint', 'prettier']
+
 let g:ale_fixers= {
-\  'javascript': ['eslint'],
-\  'ruby': ['rubocop'],
-\  'markdown': ['remark-lint'],
+\  '*': ['remove_trailing_lines', 'trim_whitespace'],
 \  'avro': ['prettier'],
-\  '*': ['remove_trailing_lines', 'trim_whitespace']
+\  'javascript': js_fixers,
+\  'markdown': ['remark-lint'],
+\  'ruby': ['rubocop'],
+\  'typescript': js_fixers
 \}
 
 " Set this variable to 1 to fix files when you save them.
