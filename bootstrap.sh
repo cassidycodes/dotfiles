@@ -21,12 +21,9 @@ function bootstrap() {
 
   rbenv init
 
-  # Vim
-  git clone git@github.com:amix/vimrc.git ~/.vim_runtime
-  sh ~/.vim_runtime/install_awesome_vimrc.sh
-  mkdir -p ~/.vim/pack/themes/start
-  git clone git@github.com:dracula/vim.git ~/vim/pack/themes/start/dracula
-  ln -sfi ~/dotfiles/my_configs.vim ~/.vim_runtime/my_configs.vim
+  # NVim
+  sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs \
+       https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
 
   # tmux
   # mkdir -p ~/.tmux/plugins
@@ -50,7 +47,10 @@ function bootstrap() {
   ln -sfi dotfiles/.gitignore ~/.gitignore
   ln -sfi dotfiles/.path ~/.path
   ln -sfi dotfiles/.tmux.conf ~/.tmux.conf
-  ln -sfi dotfiles/init.vim ~/config/
+  ln -sfi dotfiles/.vimrc ~/.vimrc
+  mkdir -p ~/.config
+  ln -sfi dotfiles/config/nvim/init.vim ~/.config/nvim/init.vim
+  ln -sfi dotfiles/config/kitty/kitty.conf ~/.config/kitty/kitty.conf
 
   source ~/.zshrc;
 }
