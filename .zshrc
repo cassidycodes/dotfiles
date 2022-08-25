@@ -90,5 +90,17 @@ for file in ~/.{exports,aliases,functions,extra}; do
 	[ -r "$file" ] && [ -f "$file" ] && source "$file";
 done;
 unset file;
-export PATH="$HOME/.rbenv/bin:$PATH"
-eval "$(rbenv init -)"
+
+# rbenv init
+source /Users/cscheffer/.config/wealthsimple/rbenv/config.zsh
+# nvm exports and autoload when changing directories
+source /Users/cscheffer/.config/wealthsimple/nvm/config.zsh
+
+# Kitty tabs current dir or file
+# precmd () {print -Pn "\e]0;%~\a"}
+# use precmd to name the window:
+# e.g., /Users/cassidy/code/dotfiles -> ~/c/c/dotfiles
+function precmd() {
+  window_title="\e]0;${${PWD/#"$HOME"/~}/code/p}\a"
+  echo -ne "$window_title"
+}

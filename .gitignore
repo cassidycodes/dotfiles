@@ -263,3 +263,7 @@ dist
 
 # SvelteKit build / generate output
 .svelte-kit
+
+# Obsidian Notes
+.obsidian/*
+**/.obsidian/*

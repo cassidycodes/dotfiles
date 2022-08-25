@@ -3,9 +3,3 @@
 # Stick to postgres 12
 export PATH="/usr/local/opt/postgresql@12/bin:$PATH"
 
-# Add nodenv to path
-# eval "$(nodenv init -)"
-
-# Add rbenv to path
-eval "$(rbenv init -)"
-export PATH="$HOME/.rbenv/bin:$PATH"
