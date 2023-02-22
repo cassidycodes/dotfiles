@@ -1,14 +1,16 @@
-call plug#begin()
-" Plug 'dense-analysis/ale'                                            " linter/fixer
+call plug#begin('~/.vim/plugged')
 " Plug 'korishev/vim-peepopen'
 " Plug 'mattn/gist-vim'
-" Plug 'maximbaz/lightline-ale'                                        " lightline status for ale
-" Plug 'peitalin/vim-jsx-typescript'                                   " jsx syntax
+Plug 'neoclide/coc.nvim', {'branch': 'release'}  " code completion
+" Plug 'peitalin/vim-jsx-typescript'               " jsx syntax
 Plug 'amix/vim-zenroom2'                                             " more distraction-free
 Plug 'bluz71/vim-nightfly-guicolors'                                 " theme
 Plug 'chr4/nginx.vim'                                                " nginx syntax
 Plug 'ctrlpvim/ctrlp.vim'                                            " fuzzy search
+Plug 'dense-analysis/ale'                                            " linter/fixer
+Plug 'honza/vim-snippets'
 Plug 'dracula/vim', { 'as': 'dracula' }                              " theme
+Plug 'kaicataldo/material.vim', { 'branch': 'main' }
 Plug 'farmergreg/vim-lastplace'                                      " open files to the last place even after quitting
 Plug 'godlygeek/tabular'                                             " align with the universe
 Plug 'haishanh/night-owl.vim'                                        " theme
@@ -18,15 +20,14 @@ Plug 'jlanzarotta/bufexplorer'                                       " search th
 Plug 'joom/vim-commentary'                                           " gcc to comment
 Plug 'jparise/vim-graphql'                                           " GraphQL syntax
 Plug 'junegunn/goyo.vim'                                             " Distraction-free writing
-Plug 'kana/vim-repeat'                                               " enhanced .
 Plug 'leafgarland/typescript-vim'                                    " TypeScript syntax
-Plug 'luochen1990/rainbow'                                          " Rainbow parens
+Plug 'luochen1990/rainbow'                                           " Rainbow parens
 Plug 'maxbrunsfeld/vim-yankstack'                                    " history for yank with ctrl p
+Plug 'maximbaz/lightline-ale'                                        " lightline status for ale
 Plug 'maxmellon/vim-jsx-pretty'                                      " JS and JSX syntax
 Plug 'mg979/vim-visual-multi'                                        " multiple cursors
 Plug 'michaeljsmith/vim-indent-object'                               " indent multiple lines
 Plug 'mileszs/ack.vim'                                               " ack to search
-Plug 'neoclide/coc.nvim', {'branch': 'release'}                      " code completion
 Plug 'pangloss/vim-javascript'                                       " JavaScript support
 Plug 'scrooloose/nerdtree'                                           " file navigator
 Plug 'styled-components/vim-styled-components', { 'branch': 'main' } " styled components
@@ -35,27 +36,27 @@ Plug 'tpope/vim-fugitive'                                            " git in vi
 Plug 'tpope/vim-markdown'                                            " markdown
 Plug 'tpope/vim-rails'                                               " rails
 Plug 'tpope/vim-rhubarb'                                             " github integration
+Plug 'tpope/vim-repeat'                                              " enhanced .
 Plug 'tpope/vim-sensible'                                            " sensible defaults
 Plug 'tpope/vim-surround'                                            " change quotes and brackets
+Plug 'tpope/vim-dispatch'                                            " dispatch cli
 Plug 'valloric/vim-indent-guides'                                    " what it says
 Plug 'vim-ruby/vim-ruby'                                             " also what is says
 Plug 'yegappan/mru'                                                  " most recently used
-" Default lsp config added these when trying to get ruby lps working
-" https://anchietajunior.hashnode.dev/neovim-for-ruby-with-lsp-nerdtree-telescope
-" Plug 'neovim/nvim-lspconfig'
-" Plug 'hrsh7th/nvim-compe'
-" Plug 'hrsh7th/vim-vsnip'
-
-" Trying out a new file navigator
-Plug 'nvim-lua/plenary.nvim'
-Plug 'nvim-telescope/telescope.nvim'
 
 " Terraform
 Plug 'hashivim/vim-terraform'
 Plug 'vim-syntastic/syntastic'
 Plug 'juliosueiras/vim-terraform-completion'
+Plug 'ecomba/vim-ruby-refactoring'
+
+" Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+" Plug 'yuki-yano/fzf-preview.vim', { 'branch': 'release/rpc' }
+Plug 'BlakeWilliams/vim-pry'
+Plug 'airblade/vim-gitgutter'
 
 call plug#end()
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => General
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -162,8 +163,9 @@ set foldcolumn=1
 " Always show line numbers
 set number
 
-" show line at 100
+" show column for cursor
 set cursorcolumn
+" show line at 100
 set colorcolumn=100
 
 " show extra whitespace as red blocks
@@ -174,6 +176,7 @@ set nolist
 "recalculate the trailing whitespace warning when idle, and after saving
 :autocmd cursorhold,bufwritepost * unlet! b:statusline_trailing_space_warning
 
+
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Colors and Fonts
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -183,6 +186,10 @@ let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 
 " Enable syntax highlighting
 syntax enable
+" Color Scheme
+let g:material_terminal_italics = 1
+let g:material_theme_style = 'dark'
+colorscheme dracula
 
 " Enable 256 colors palette in Gnome Terminal
 if $COLORTERM == 'gnome-terminal'
@@ -191,11 +198,11 @@ endif
 
 try
     set termguicolors
-    colorscheme nightfly " night-owl
+    colorscheme dracula
 catch
 endtry
 
-set background=dark
+" set background=dark
 
 " Set extra options when running in GUI mode
 if has("gui_running")
@@ -282,6 +289,11 @@ map <leader>to :tabonly<cr>
 map <leader>tc :tabclose<cr>
 map <leader>tm :tabmove
 map <leader>t<leader> :tabnext
+" tab navigation like firefox
+" nnoremap <silent> <C-Right> :tabnext<CR>
+" nnoremap <silent> <C-Left> :tabprevious<CR>
+" nnoremap <silent> <C-t> :tabnew<CR>
+
 
 " Let 'tl' toggle between this and the last accessed tab
 let g:lasttab = 1
@@ -348,6 +360,7 @@ endfun
 if has("autocmd")
     autocmd BufWritePre *.txt,*.js,*.py,*.wiki,*.sh,*.coffee :call CleanExtraSpaces()
 endif
+
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -519,12 +532,10 @@ inoremap $4 {<esc>o}<esc>O
 inoremap $q ''<esc>i
 inoremap $e ""<esc>i
 
-
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => General abbreviations
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 iab xdate <C-r>=strftime("%d/%m/%y %H:%M:%S")<cr>
-
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Ack searching and cope displaying
@@ -540,6 +551,8 @@ vnoremap <silent> gv :call VisualSelection('gv', '')<CR>
 
 " Open Ack and put the cursor in the right position
 map <leader>g :Ack
+" Search word under cursor
+noremap <Leader>sw :Ack <cword><cr>
 
 " When you press <leader>r you can search and replace the selected text
 vnoremap <silent> <leader>r :call VisualSelection('replace', '')<CR>
@@ -672,7 +685,6 @@ au FileType python map <buffer> <leader>2 /def
 au FileType python map <buffer> <leader>C ?class
 au FileType python map <buffer> <leader>D ?def
 
-
 """"""""""""""""""""""""""""""
 " => JavaScript section
 """""""""""""""""""""""""""""""
@@ -697,7 +709,6 @@ function! JavaScriptFold()
     setl foldtext=FoldText()
 endfunction
 
-
 """"""""""""""""""""""""""""""
 " => CoffeeScript section
 """""""""""""""""""""""""""""""
@@ -708,7 +719,6 @@ endfunction
 au FileType coffee call CoffeeScriptFold()
 
 au FileType gitcommit call setpos('.', [0, 1, 1, 0])
-
 
 """"""""""""""""""""""""""""""
 " => Shell section
@@ -721,12 +731,10 @@ if exists('$TMUX')
     endif
 endif
 
-
 """"""""""""""""""""""""""""""
 " => Twig section
 """"""""""""""""""""""""""""""
 autocmd BufRead *.twig set syntax=html filetype=html
-
 
 """"""""""""""""""""""""""""""
 " => Markdown
@@ -741,7 +749,6 @@ let g:bufExplorerShowRelativePath=1
 let g:bufExplorerFindActive=1
 let g:bufExplorerSortBy='mru'
 map <leader>o :BufExplorer<cr>
-
 
 """"""""""""""""""""""""""""""
 " => MRU plugin
@@ -759,7 +766,6 @@ let g:yankstack_yank_keys = ['y', 'd']
 
 nmap <C-p> <Plug>yankstack_substitute_older_paste
 nmap <C-n> <Plug>yankstack_substitute_newer_paste
-
 
 """"""""""""""""""""""""""""""
 " => CTRL-P
@@ -782,7 +788,6 @@ let g:ctrlp_custom_ignore = 'node_modules\|^\.DS_Store\|^\.git\|^\.coffee|log'
 " Enable all functions in all modes
 let g:user_zen_mode='a'
 
-
 """"""""""""""""""""""""""""""
 " => snipMate (beside <TAB> support <CTRL-j>)
 """"""""""""""""""""""""""""""
@@ -790,13 +795,11 @@ ino <C-j> <C-r>=snipMate#TriggerSnippet()<cr>
 snor <C-j> <esc>i<right><C-r>=snipMate#TriggerSnippet()<cr>
 let g:snipMate = { 'snippet_version' : 1 }
 
-
 """"""""""""""""""""""""""""""
 " => Vim grep
 """"""""""""""""""""""""""""""
 let Grep_Skip_Dirs = 'RCS CVS SCCS .svn generated'
 set grepprg=/bin/grep\ -nH
-
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Nerd Tree
@@ -822,31 +825,48 @@ map <leader>nf :NERDTreeFind<cr>
 vmap Si S(i_<esc>f)
 au FileType mako vmap Si S"i${ _(<esc>2f"a) }<esc>
 
-
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => lightline
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:lightline = {
-      \ 'colorscheme': 'nightfly',
+      \ 'colorscheme': 'dracula',
       \ 'active': {
       \   'left': [ ['mode', 'paste'],
       \             ['fugitive', 'readonly', 'filename', 'modified'] ],
-      \   'right': [ [ 'lineinfo' ], ['percent'] ]
+      \   'right': [ [ 'linter_checking', 'linter_errors', 'linter_warnings', 'linter_infos', 'linter_ok' ],
+      \              [ 'lineinfo' ],
+      \              ['percent'] ]
       \ },
       \ 'component': {
       \   'readonly': '%{&filetype=="help"?"":&readonly?"🔒":""}',
       \   'modified': '%{&filetype=="help"?"":&modified?"+":&modifiable?"":"-"}',
-      \   'fugitive': '%{exists("*fugitive#head")?fugitive#head():""}'
+      \   'fugitive': '%{FugitiveHead()}'
       \ },
       \ 'component_function': { 'filename': 'LightlineFilename' },
       \ 'component_visible_condition': {
       \   'readonly': '(&filetype!="help"&& &readonly)',
       \   'modified': '(&filetype!="help"&&(&modified||!&modifiable))',
-      \   'fugitive': '(exists("*fugitive#head") && ""!=fugitive#head())'
+      \   'fugitive': '(exists("*FugitiveHead") && ""!=FugitiveHead())'
       \ },
       \ 'separator': { 'left': ' ', 'right': ' ' },
       \ 'subseparator': { 'left': ' ', 'right': ' ' }
       \ }
+
+let g:lightline.component_expand = {
+      \  'linter_checking': 'lightline#ale#checking',
+      \  'linter_infos': 'lightline#ale#infos',
+      \  'linter_warnings': 'lightline#ale#warnings',
+      \  'linter_errors': 'lightline#ale#errors',
+      \  'linter_ok': 'lightline#ale#ok',
+      \ }
+let g:lightline.component_type = {
+      \     'linter_checking': 'right',
+      \     'linter_infos': 'right',
+      \     'linter_warnings': 'warning',
+      \     'linter_errors': 'error',
+      \     'linter_ok': 'right',
+      \ }
+
 
 function! LightlineFilename()
   let root = fnamemodify(get(b:, 'git_dir'), ':h')
@@ -856,6 +876,7 @@ function! LightlineFilename()
   endif
   return expand('%')
 endfunction
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Vimroom
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -868,50 +889,49 @@ nnoremap <silent> <leader>z :Goyo<cr>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Ale (syntax checker and linter)
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" let g:ale_linters = {
-" \   'javascript': ['eslint'],
-" \   'ruby': ['rubocop'],
-" \   'markdow': ['remark-lint'],
-" \   'avro': ['jsonlint', 'prettier'],
-" \   'python': ['flake8'],
-" \   'go': ['go', 'golint', 'errcheck']
-" \}
+" TODO: Move me somewhere
+nmap <leader>d :call pry#insert()<cr>
 
-" let js_fixers = ['eslint', 'prettier']
+let g:ale_linters = {
+\   'javascript': ['eslint'],
+\   'ruby': ['rubocop'],
+\   'markdow': ['remark-lint'],
+\   'avro': ['jsonlint', 'prettier'],
+\   'python': ['flake8'],
+\   'go': ['go', 'golint', 'errcheck']
+\}
 
-" let g:ale_fixers= {
-" \  '*': ['remove_trailing_lines', 'trim_whitespace'],
-" \  'avro': ['prettier'],
-" \  'javascript': js_fixers,
-" \  'markdown': ['remark-lint'],
-" \  'ruby': ['rubocop']
-" \}
+let js_fixers = ['eslint', 'prettier']
 
-" nmap <silent> <leader>a <Plug>(ale_next_wrap)
+let g:ale_fixers= {
+\  '*': ['remove_trailing_lines', 'trim_whitespace'],
+\  'avro': ['prettier'],
+\  'ruby': ['rubocop']
+\}
 
-" " Enabling highlighting
-" let g:ale_set_highlights = 1
+nmap <silent> <leader>a <Plug>(ale_next_wrap)
 
-" " Only run linting when saving the file
-" let g:ale_lint_on_text_changed = 'never'
-" let g:ale_lint_on_enter = 0
+" Enabling highlighting
+let g:ale_set_highlights = 1
 
-" " Run fixers on save
-" let g:ale_fix_on_save = 1
+" Only run linting when saving the file
+let g:ale_lint_on_text_changed = 'never'
+let g:ale_lint_on_enter = 0
+
+" Run fixers on save
+let g:ale_fix_on_save = 1
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Git gutter (Git diff)
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let g:gitgutter_enabled=0
-nnoremap <silent> <leader>d :GitGutterToggle<cr>
-
+let g:gitgutter_enabled=1
+nnoremap <silent> <leader>gg :GitGutterToggle<cr>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => EditorConfig (project-specific EditorConfig rule)
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:EditorConfig_exclude_patterns = ['fugitive://.*']
-
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Fugitive
@@ -920,9 +940,15 @@ let g:EditorConfig_exclude_patterns = ['fugitive://.*']
 nnoremap <leader>v :.GBrowse!<CR>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Autocomplet
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => CoC Completion
 " https://github.com/neoclide/coc.nvim
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+let g:coc_node_path = '~/.nvm/versions/node/v16.16.0/bin/node'
 
 " Set internal encoding of vim, not needed on neovim, since coc.nvim using some
 " unicode characters in the file autoload/float.vim
@@ -982,6 +1008,8 @@ inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm()
 
 " Use `[g` and `]g` to navigate diagnostics
 " Use `:CocDiagnostics` to get all diagnostics of current buffer in location list.
+" def
+"
 nmap <silent> [g <Plug>(coc-diagnostic-prev)
 nmap <silent> ]g <Plug>(coc-diagnostic-next)
 
@@ -1094,7 +1122,18 @@ nnoremap <silent><nowait> <space>k  :<C-u>CocPrev<CR>
 nnoremap <silent><nowait> <space>p  :<C-u>CocListResume<CR>
 
 " Use <cr> to confirm completion
-inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm() : "\<C-g>u\<CR>"
+inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm() : "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+inoremap <silent><expr> <C-x><C-z> coc#pum#visible() ? coc#pum#stop() : "\<C-x>\<C-z>"
+" remap for complete to use tab and <cr>
+inoremap <silent><expr> <TAB>
+  \ coc#pum#visible() ? coc#pum#next(1):
+  \ <SID>check_back_space() ? "\<Tab>" :
+  \ coc#refresh()
+inoremap <expr><S-TAB> coc#pum#visible() ? coc#pum#prev(1) : "\<C-h>"
+inoremap <silent><expr> <c-space> coc#refresh()
+
+hi CocSearch ctermfg=12 guifg=#18A3FF
+hi CocMenuSel ctermbg=109 guibg=#13354A
 
 " Run jest for current project
 command! -nargs=0 Jest :call  CocAction('runCommand', 'jest.projectTest')
@@ -1108,33 +1147,22 @@ nnoremap <leader>te :call CocAction('runCommand', 'jest.singleTest')<CR>
 " Init jest in current cwd, require global jest command exists
 command! JestInit :call CocAction('runCommand', 'jest.init')
 
+" Coc Snippets
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Autocomple Plugin for Neovim
-" https://github.com/hrsh7th/nvim-compe
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let g:compe = {}
-let g:compe.enabled = v:true
-let g:compe.autocomplete = v:true
-let g:compe.debug = v:false
-let g:compe.min_length = 1
-let g:compe.preselect = 'enable'
-let g:compe.throttle_time = 80
-let g:compe.source_timeout = 200
-let g:compe.resolve_timeout = 800
-let g:compe.incomplete_delay = 400
-let g:compe.max_abbr_width = 100
-let g:compe.max_kind_width = 100
-let g:compe.max_menu_width = 100
-let g:compe.documentation = v:true
+" Use <C-l> for trigger snippet expand.
+imap <C-l> <Plug>(coc-snippets-expand)
 
-let g:compe.source = {}
-let g:compe.source.path = v:true
-let g:compe.source.buffer = v:true
-let g:compe.source.calc = v:true
-let g:compe.source.nvim_lsp = v:true
-let g:compe.source.nvim_lua = v:true
-let g:compe.source.vsnip = v:true
-let g:compe.source.ultisnips = v:true
-let g:compe.source.luasnip = v:true
-let g:compe.source.emoji = v:true
+" Use <C-j> for select text for visual placeholder of snippet.
+vmap <C-j> <Plug>(coc-snippets-select)
+
+" Use <C-j> for jump to next placeholder, it's default of coc.nvim
+let g:coc_snippet_next = '<c-j>'
+
+" Use <C-k> for jump to previous placeholder, it's default of coc.nvim
+let g:coc_snippet_prev = '<c-k>'
+
+" Use <C-j> for both expand and jump (make expand higher priority.)
+imap <C-j> <Plug>(coc-snippets-expand-jump)
+
+" Use <leader>x for convert visual selected code to snippet
+xmap <leader>x  <Plug>(coc-convert-snippet)

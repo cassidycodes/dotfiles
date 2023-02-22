@@ -84,6 +84,8 @@ alias la='ls -lah'
 alias rdm="rails db:migrate"
 alias rs="bundle exec spring rails server"
 alias rc="bundle exec spring rails console"
+alias bes="bundle exec spring"
+alias besr="bundled_spring rspec"
 
 # Sitespeed.io
 alias sitespeed="docker run --rm -v \"$(pwd):/sitespeed.io\" sitespeedio/sitespeed.io"
@@ -102,3 +104,6 @@ alias vim="nvim"
 # Configure zsh
 alias zshconfig="nvim ~/.zshrc && source ~/.zshrc"
 alias ohmyzsh="nvim ~/.oh-my-zsh"
+
+# Yarn
+alias ytw="yarn test --watch"

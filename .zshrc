@@ -91,11 +91,6 @@ for file in ~/.{exports,aliases,functions,extra}; do
 done;
 unset file;
 
-# rbenv init
-source /Users/cscheffer/.config/wealthsimple/rbenv/config.zsh
-# nvm exports and autoload when changing directories
-source /Users/cscheffer/.config/wealthsimple/nvm/config.zsh
-
 # Kitty tabs current dir or file
 # precmd () {print -Pn "\e]0;%~\a"}
 # use precmd to name the window:
