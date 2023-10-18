@@ -829,7 +829,6 @@ au FileType mako vmap Si S"i${ _(<esc>2f"a) }<esc>
 " => lightline
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:lightline = {
-      \ 'colorscheme': 'dracula',
       \ 'active': {
       \   'left': [ ['mode', 'paste'],
       \             ['fugitive', 'readonly', 'filename', 'modified'] ],
@@ -893,12 +892,12 @@ nnoremap <silent> <leader>z :Goyo<cr>
 nmap <leader>d :call pry#insert()<cr>
 
 let g:ale_linters = {
-\   'javascript': ['eslint'],
-\   'ruby': ['rubocop'],
-\   'markdow': ['remark-lint'],
 \   'avro': ['jsonlint', 'prettier'],
+\   'go': ['go', 'golint', 'errcheck'],
+\   'javascript': ['eslint --cache'],
+\   'markdown': ['remark-lint'],
 \   'python': ['flake8'],
-\   'go': ['go', 'golint', 'errcheck']
+\   'ruby': ['rubocop']
 \}
 
 let js_fixers = ['eslint', 'prettier']
@@ -906,7 +905,8 @@ let js_fixers = ['eslint', 'prettier']
 let g:ale_fixers= {
 \  '*': ['remove_trailing_lines', 'trim_whitespace'],
 \  'avro': ['prettier'],
-\  'ruby': ['rubocop']
+\  'ruby': ['rubocop'],
+\   'markdown': ['remark-lint']
 \}
 
 nmap <silent> <leader>a <Plug>(ale_next_wrap)
@@ -919,7 +919,7 @@ let g:ale_lint_on_text_changed = 'never'
 let g:ale_lint_on_enter = 0
 
 " Run fixers on save
-let g:ale_fix_on_save = 1
+let g:ale_fix_on_save = 0
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -1166,3 +1166,7 @@ imap <C-j> <Plug>(coc-snippets-expand-jump)
 
 " Use <leader>x for convert visual selected code to snippet
 xmap <leader>x  <Plug>(coc-convert-snippet)
+
+" Coc prettier
+command! -nargs=0 Prettier :CocCommand prettier.forceFormatDocument
+

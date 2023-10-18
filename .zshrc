@@ -74,10 +74,10 @@ plugins=(
   bundler
   git
   rails
-  rake
   rbenv
-  ruby
   yarn
+  gh
+  z
 )
 
 source $ZSH/oh-my-zsh.sh
@@ -99,3 +99,5 @@ function precmd() {
   window_title="\e]0;${${PWD/#"$HOME"/~}/code/p}\a"
   echo -ne "$window_title"
 }
+source /Users/cscheffer/.config/wealthsimple/rbenv/config.zsh
+source /Users/cscheffer/.config/wealthsimple/nvm/config.zsh

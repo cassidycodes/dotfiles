@@ -1,5 +1,1 @@
 #!/usr/bin/env bash
-
-# Stick to postgres 12
-export PATH="/usr/local/opt/postgresql@12/bin:$PATH"
-

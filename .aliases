@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 
+alias python="python3"
 # Quickly grep history
 alias hg="history | grep "
 
@@ -27,7 +28,7 @@ alias ips="ifconfig -a | grep -o 'inet6\? \(addr:\)\?\s\?\(\(\([0-9]\+\.\)\{3\}[
 alias ifactive="ifconfig | pcregrep -M -o '^[^\t:]+:([^\n]|\n\t)*status: active'"
 
 # Canonical hex dump; some systems have this symlinked
-command -v hd > /dev/null || alias hd="hexdump -C"
+command -v hd >/dev/null || alias hd="hexdump -C"
 
 # Trim new lines and copy to clipboard
 alias c="tr -d '\n' | pbcopy"
@@ -73,7 +74,7 @@ alias dockerclean='dockercleanc || true && dockercleani'
 alias hbr='hub browse'
 
 # Set GOPATH to current directory.
-alias setgopath="export GOPATH=`pwd` && echo \"GOPATH is set to $GOPATH\""
+alias setgopath="export GOPATH=$(pwd) && echo \"GOPATH is set to $GOPATH\""
 alias sgp="setgopath"
 
 # Use exa for ls https://the.exa.website/
@@ -102,8 +103,12 @@ alias v="nvim"
 alias vim="nvim"
 
 # Configure zsh
-alias zshconfig="nvim ~/.zshrc && source ~/.zshrc"
+alias zshconfig="nvim ~/.zshrc && exec zsh"
 alias ohmyzsh="nvim ~/.oh-my-zsh"
 
 # Yarn
 alias ytw="yarn test --watch"
+
+# git
+alias ggo="g go"
+alias viewpr="gh pr view --web"
