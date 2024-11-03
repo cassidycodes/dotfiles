@@ -1,0 +1,109 @@
+#!/usr/bin/env bash
+
+alias python="python3"
+# Quickly grep history
+alias hg="history | grep "
+
+# Find aliases quickly
+alias als='alias | grep'
+
+# Always enable colored `grep` output
+# Note: `GREP_OPTIONS="--color=auto"` is deprecated, hence the alias usage.
+alias grep='grep --color=auto'
+alias fgrep='fgrep --color=auto'
+alias egrep='egrep --color=auto'
+
+# Enable aliases to be sudo’ed
+alias sudo='sudo '
+
+# Get week number
+alias week='date +%V'
+
+# IP addresses
+alias ip="dig +short myip.opendns.com @resolver1.opendns.com"
+alias localip="ipconfig getifaddr en0"
+alias ips="ifconfig -a | grep -o 'inet6\? \(addr:\)\?\s\?\(\(\([0-9]\+\.\)\{3\}[0-9]\+\)\|[a-fA-F0-9:]\+\)' | awk '{ sub(/inet6? (addr:)? ?/, \"\"); print }'"
+
+# Show active network interfaces
+alias ifactive="ifconfig | pcregrep -M -o '^[^\t:]+:([^\n]|\n\t)*status: active'"
+
+# Canonical hex dump; some systems have this symlinked
+command -v hd >/dev/null || alias hd="hexdump -C"
+
+# Trim new lines and copy to clipboard
+alias c="tr -d '\n' | pbcopy"
+
+# URL-encode strings
+alias urlencode='python -c "import sys, urllib as ul; print ul.quote_plus(sys.argv[1]);"'
+
+# Intuitive map function
+# For example, to list all directories that contain a certain file:
+# find . -name .gitattributes | map dirname
+alias map="xargs -n1"
+
+# One of @janmoesen's ProTips
+for method in GET HEAD POST PUT DELETE TRACE OPTIONS; do
+  alias "${method}"="lwp-request -m '${method}'"
+done
+
+# Reload the shell (i.e. invoke as a login shell)
+alias reload="exec ${SHELL} -l"
+
+# Print each PATH entry on a separate line
+alias path='echo -e ${PATH//:/\\n}'
+
+# Edit and save ssh/config
+alias sshconfig='vim ~/.ssh/config && source ~/.zshrc && echo "${green}Config Updated${reset}"'
+
+# See what's running on a given port
+alias openports='sudo lsof -i -n -P | grep TCP | grep'
+
+# Kill all running containers.
+alias dockerkillall='docker kill $(docker ps -q)'
+
+# Delete all stopped containers.
+alias dockercleanc='printf "\n>>> Deleting stopped containers\n\n" && docker rm $(docker ps -a -q)'
+
+# Delete all untagged images.
+alias dockercleani='printf "\n>>> Deleting untagged images\n\n" && docker rmi $(docker images -q -f dangling=true)'
+
+# Delete all stopped containers and untagged images.
+alias dockerclean='dockercleanc || true && dockercleani'
+
+# hub stuff
+alias hbr='hub browse'
+
+# Set GOPATH to current directory.
+alias setgopath="export GOPATH=$(pwd) && echo \"GOPATH is set to $GOPATH\""
+alias sgp="setgopath"
+
+# Use exa for ls https://the.exa.website/
+alias la='ls -lah'
+
+# Override oh my zsh aliases
+alias rdm="rails db:migrate"
+alias rs="bundle exec spring rails server"
+alias rc="bundle exec spring rails console"
+alias bes="bundle exec spring"
+alias besr="bundled_spring rspec"
+
+# Sitespeed.io
+alias sitespeed="docker run --rm -v \"$(pwd):/sitespeed.io\" sitespeedio/sitespeed.io"
+
+# Git force push no verify
+alias gfpnv="git push --force-with-lease --no-verify"
+
+# find gems with C extensions
+alias cgem="bundle show --paths | ruby -e \"STDIN.each_line {|dep| puts dep.split('/').last if File.directory?(File.join(dep.chomp, 'ext')) }\""
+
+# neo vim shortcut
+alias nv="nvim"
+alias v="nvim"
+alias vim="nvim"
+
+# Yarn
+alias ytw="yarn test --watch"
+
+# git
+alias ggo="g go"
+alias viewpr="gh pr view --web"
